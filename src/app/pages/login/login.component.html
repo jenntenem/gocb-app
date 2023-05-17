@@ -1,0 +1,36 @@
+<div class="login-container">
+  <div class="login-box">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" class="flex flex-column gap-2">
+      <div class="form-field">
+        <input
+          id="username"
+          pInputText
+          placeholder="Username"
+          formControlName="username"
+          styleClass="w-full"
+          [maxlength]="15"
+        />
+      </div>
+      <div class="form-field">
+        <p-password
+          placeholder="Password"
+          formControlName="password"
+          styleClass="w-100"
+          [minlength]="8"
+          [maxLength]="15"
+        ></p-password>
+      </div>
+      <span class="p-error" *ngIf="true">
+        {{ message }}
+      </span>
+      <button
+        pButton
+        pRipple
+        label="Login"
+        styleClass="p-button-secondary"
+        (click)="onSubmit()"
+      ></button>
+    </form>
+  </div>
+</div>

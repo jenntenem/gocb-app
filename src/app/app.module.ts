@@ -9,10 +9,12 @@ import { AppComponent } from './app.component';
 
 // PrimeNG
 import { PrimengModule } from './primeng/primeng.module';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
