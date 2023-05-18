@@ -10,6 +10,12 @@ const routes: Routes = [
   {
     path: 'sistema',
     component: InicioComponent,
+    children: [
+      {
+        path: 'mantenimiento',
+        loadChildren: () => import('./modules/mantenimiento/mantenimiento.module').then(m => m.MantenimientoModule)
+      }
+    ],
   },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
@@ -18,6 +24,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
