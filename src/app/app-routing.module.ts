@@ -14,6 +14,10 @@ const routes: Routes = [
       {
         path: 'mantenimiento',
         loadChildren: () => import('./modules/mantenimiento/mantenimiento.module').then(m => m.MantenimientoModule)
+      },
+      {
+        path: 'facturacion',
+        loadChildren: () => import('./modules/facturacion/facturacion.module').then(m => m.FacturacionModule)
       }
     ],
   },
