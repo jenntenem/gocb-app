@@ -20,6 +20,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { CalendarModule } from 'primeng/calendar';
 import { TabViewModule } from 'primeng/tabview';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { TagModule } from 'primeng/tag';
 
 var components = [
   CommonModule,
@@ -40,15 +41,13 @@ var components = [
   CalendarModule,
   TabViewModule,
   AutoCompleteModule,
+  TagModule,
 ];
 
 @NgModule({
   declarations: [],
   imports: components,
   exports: components,
-  providers: [
-    MessageService,
-    ConfirmationService,
-  ],
+  providers: [MessageService, ConfirmationService],
 })
-export class PrimengModule { }
+export class PrimengModule {}

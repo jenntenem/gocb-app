@@ -11,9 +11,12 @@ import { PrimengModule } from 'src/app/primeng/primeng.module';
 import { OrdenCompraComponent } from './pages/orden-compra/orden-compra.component';
 
 // Components
+import { ProductComponent } from './components/product/product.component';
+
 @NgModule({
   declarations: [
     OrdenCompraComponent,
+    ProductComponent,
   ],
   imports: [
     CommonModule,

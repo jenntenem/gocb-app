@@ -1,0 +1,45 @@
+<div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+  <div class="mb-3">
+    <img [src]="product.image" [alt]="product.name" class="w-6 shadow-2" />
+  </div>
+  <div>
+    <h4 class="mb-1">{{ product.name }}</h4>
+    <h6 class="mt-0 mb-3">{{ "$" + product.price }}</h6>
+    <p-tag
+      [value]="product.inventoryStatus"
+      [severity]="getSeverity(product.inventoryStatus)"
+    ></p-tag>
+    <div
+      class="car-buttons mt-5 flex align-items-center justify-content-center"
+    >
+      <p-button
+        type="button"
+        styleClass="p-button p-button-rounded mr-2"
+        icon="pi pi-plus"
+        pTooltip="Agregar"
+        tooltipPosition="bottom"
+        (onClick)="onAdd()"
+        *ngIf="cantidad === 0"
+      ></p-button>
+      <ng-container *ngIf="cantidad != 0">
+        <p-button
+          type="button"
+          styleClass="p-button-danger p-button-rounded"
+          icon="pi pi-minus"
+          pTooltip="Agregar"
+          tooltipPosition="bottom"
+          (onClick)="cantidadProducto(0)"
+        ></p-button>
+        <span class="mx-2">
+          <b>{{ cantidad }}</b>
+        </span>
+        <p-button
+          type="button"
+          styleClass="p-button-success p-button-rounded"
+          icon="pi pi-plus"
+          (onClick)="cantidadProducto(1)"
+        ></p-button>
+      </ng-container>
+    </div>
+  </div>
+</div>
