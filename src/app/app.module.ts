@@ -10,11 +10,13 @@ import { AppComponent } from './app.component';
 // PrimeNG
 import { PrimengModule } from './primeng/primeng.module';
 import { LoginComponent } from './pages/login/login.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    InicioComponent,
   ],
   imports: [
     BrowserModule,

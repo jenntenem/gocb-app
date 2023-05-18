@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  height: 100vh;
+
+  .sidebar {
+    width: 15%;
+    background-color: #f5f5f5;
+  }
+
+  .content {
+    flex-grow: 1;
+    position: relative;
+
+    .header-fixed {
+      // position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-color: #f0f0f0; /* Color de fondo del encabezado fijo */
+      z-index: 999;
+      text-align: end;
+      padding: 0 15px;
+    }
+
+    .main-content {
+      margin-top: 30px;
+      padding: 0 15px;
+    }
+
+  }
+}
+
+p-panelMenu{
+  .p-panelmenu{
+      height:calc(100% - 37px);
+      margin-bottom: 75px;
+  }
+}

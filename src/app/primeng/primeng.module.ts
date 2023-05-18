@@ -6,6 +6,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenubarModule } from 'primeng/menubar';
 
 var components = [
   CommonModule,
@@ -13,7 +17,11 @@ var components = [
   InputTextModule,
   InputTextareaModule,
   PasswordModule,
-  ButtonModule
+  ButtonModule,
+  SidebarModule,
+  PanelMenuModule,
+  BrowserAnimationsModule,
+  MenubarModule,
 ];
 
 @NgModule({
