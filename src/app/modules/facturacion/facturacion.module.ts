@@ -13,7 +13,7 @@ import { OrdenCompraComponent } from './pages/orden-compra/orden-compra.componen
 // Components
 @NgModule({
   declarations: [
-    OrdenCompraComponent
+    OrdenCompraComponent,
   ],
   imports: [
     CommonModule,

@@ -14,6 +14,12 @@ import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { DividerModule } from 'primeng/divider';
 import { DialogModule } from 'primeng/dialog';
+import { CardModule } from 'primeng/card';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { InputMaskModule } from 'primeng/inputmask';
+import { CalendarModule } from 'primeng/calendar';
+import { TabViewModule } from 'primeng/tabview';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 var components = [
   CommonModule,
@@ -28,6 +34,12 @@ var components = [
   TableModule,
   DividerModule,
   DialogModule,
+  CardModule,
+  KeyFilterModule,
+  InputMaskModule,
+  CalendarModule,
+  TabViewModule,
+  AutoCompleteModule,
 ];
 
 @NgModule({
