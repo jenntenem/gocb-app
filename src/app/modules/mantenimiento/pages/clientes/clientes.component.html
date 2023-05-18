@@ -1,0 +1,83 @@
+<h2>Clientes</h2>
+<p-divider></p-divider>
+
+<p-table
+  #dt1
+  dataKey="id"
+  [value]="clients"
+  [columns]="cols"
+  [tableStyle]="{ 'min-width': '60rem' }"
+  [globalFilterFields]="['nombre', 'identificacion', 'email', 'telefono']"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+      Listado de clientes
+      <div>
+        <p-button
+          icon="pi pi-plus"
+          pTooltip="Agregar cliente"
+          tooltipPosition="bottom"
+        ></p-button>
+        <span class="p-input-icon-left ml-auto mx-2">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            #textInput
+            type="text"
+            (input)="dt1.filterGlobal(textInput.value, 'contains')"
+            placeholder="Buscar"
+          />
+        </span>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th
+        *ngFor="let col of columns"
+        [id]="col.field"
+        pResizableColumn
+        [style]="{
+          'white-space': 'pre-wrap',
+          'text-align': 'center'
+        }"
+      >
+        {{ col.header }}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-clients let-columns="columns">
+    <tr>
+      <td
+        *ngFor="let col of columns"
+        [style]="{
+          'text-align': col.align ? col.align : 'left',
+        }"
+      >
+        {{ clients[col.field] }}
+
+        <div class="p-d-flex p-ai-center" *ngIf="col.field === 'acciones'">
+          <button
+            #editBtn
+            pButton
+            icon="pi pi-pencil"
+            class="p-button-success mx-1"
+            (click)="onEdit(clients)"
+          ></button>
+          <button
+            #deleteBtn
+            pButton
+            icon="pi pi-trash"
+            class="p-button-danger mx-1"
+            (click)="onDelete(clients)"
+          ></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="flex align-items-center justify-content-between">
+      Total {{ clients ? clients.length : 0 }} clientes.
+    </div>
+  </ng-template>
+</p-table>
