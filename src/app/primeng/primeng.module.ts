@@ -8,8 +8,11 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarModule } from 'primeng/menubar';
+import { TableModule } from 'primeng/table';
+import { MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import { DividerModule } from 'primeng/divider';
 
 var components = [
   CommonModule,
@@ -20,13 +23,18 @@ var components = [
   ButtonModule,
   SidebarModule,
   PanelMenuModule,
-  BrowserAnimationsModule,
   MenubarModule,
+  TableModule,
+  DividerModule,
 ];
 
 @NgModule({
   declarations: [],
   imports: components,
-  exports: components
+  exports: components,
+  providers: [
+    MessageService,
+    ConfirmationService,
+  ],
 })
 export class PrimengModule { }
