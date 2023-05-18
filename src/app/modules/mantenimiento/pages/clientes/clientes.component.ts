@@ -19,6 +19,10 @@ export class ClientesComponent implements OnInit {
   clients: Cliente[] = [];
   cols: any[] = [];
 
+  // Dialog Agregar/Modificar Cliente
+  visibleDialog: boolean = false;
+  tipo_registro?: number; // 1: Agregar, 2: Modificar
+
   constructor() {}
 
   ngOnInit(): void {
@@ -47,7 +51,19 @@ export class ClientesComponent implements OnInit {
     ];
   }
 
-  onEdit(cliente: Cliente) {}
+  onAdd() {
+    this.tipo_registro = 1;
+    this.visibleDialog = true;
+  }
+
+  onEdit(cliente: Cliente) {
+    this.tipo_registro = 2;
+    this.visibleDialog = true;
+  }
 
   onDelete(cliente: Cliente) {}
+
+  onCloseDialog(event: any) {
+    this.visibleDialog = false;
+  }
 }

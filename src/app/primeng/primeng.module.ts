@@ -13,6 +13,7 @@ import { TableModule } from 'primeng/table';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { DividerModule } from 'primeng/divider';
+import { DialogModule } from 'primeng/dialog';
 
 var components = [
   CommonModule,
@@ -26,6 +27,7 @@ var components = [
   MenubarModule,
   TableModule,
   DividerModule,
+  DialogModule,
 ];
 
 @NgModule({

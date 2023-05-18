@@ -11,10 +11,12 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
 
 // PrimeNG
 import { PrimengModule } from 'src/app/primeng/primeng.module';
+import { AggModClienteComponent } from './components/agg-mod-cliente/agg-mod-cliente.component';
 
 @NgModule({
   declarations: [
-    ClientesComponent
+    ClientesComponent,
+    AggModClienteComponent
   ],
   imports: [
     CommonModule,

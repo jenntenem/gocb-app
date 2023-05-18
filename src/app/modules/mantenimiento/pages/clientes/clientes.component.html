@@ -14,9 +14,11 @@
       Listado de clientes
       <div>
         <p-button
+          #addBtn
           icon="pi pi-plus"
           pTooltip="Agregar cliente"
           tooltipPosition="bottom"
+          (onClick)="onAdd()"
         ></p-button>
         <span class="p-input-icon-left ml-auto mx-2">
           <i class="pi pi-search"></i>
@@ -81,3 +83,9 @@
     </div>
   </ng-template>
 </p-table>
+<app-agg-mod-cliente
+  [tipo_registro]="tipo_registro"
+  [visible]="visibleDialog"
+  (onClose)="onCloseDialog($event)"
+></app-agg-mod-cliente>
+```
