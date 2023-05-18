@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { OrdenCompraComponent } from './pages/orden-compra/orden-compra.component';
+
+const routes: Routes = [
+  { path: 'orden-compra', component: OrdenCompraComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

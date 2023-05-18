@@ -7,10 +7,14 @@ import { FacturacionRoutingModule } from './facturacion-routing.module';
 // PrimeNG
 import { PrimengModule } from 'src/app/primeng/primeng.module';
 
-// Components
+// Pages
+import { OrdenCompraComponent } from './pages/orden-compra/orden-compra.component';
 
+// Components
 @NgModule({
-  declarations: [],
+  declarations: [
+    OrdenCompraComponent
+  ],
   imports: [
     CommonModule,
     FacturacionRoutingModule,
