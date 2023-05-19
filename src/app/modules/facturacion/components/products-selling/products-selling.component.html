@@ -1,0 +1,91 @@
+<p-card>
+  <form [formGroup]="myForm">
+    <div class="grid formgrid p-fluid">
+      <div
+        class="col-12 md:col-6 lg:col-4 my-2"
+        *ngFor="let filter of listFilterData"
+      >
+        <div class="grid">
+          <label [for]="filter.key" class="col-12 md:col-12 lg:col-4">
+            <span class="w-100 text-right">{{ filter.label }}:</span>
+          </label>
+          <div class="col-12 md:col-12 lg:col-8">
+            <input
+              type="text"
+              pInputText
+              [id]="filter.key"
+              [formControlName]="filter.key"
+              [placeholder]="filter.placeholder"
+              [minlength]="filter.minlength ?? null"
+              [maxlength]="filter.maxlength ?? 500"
+              [pKeyFilter]="filter.pKeyFilter ?? alpha_space"
+              class="w-full"
+              (input)="filter.onInput($event)"
+              (blur)="filter.selectBlur ? filter.onBlur($event) : null"
+              *ngIf="filter.isInput"
+            />
+            <p-calendar
+              [inputId]="filter.key"
+              [id]="filter.key"
+              [formControlName]="filter.key"
+              [dateFormat]="filter.dateFormat"
+              [placeholder]="filter.placeholder"
+              [showIcon]="true"
+              [minDate]="filter.min_date ?? null"
+              [maxDate]="filter.max_date ?? null"
+              (onSelect)="
+                filter.selectDate ? filter.onSelectDate($event) : null
+              "
+              (onBlur)="filter.selectBlur ? filter.onBlur($event) : null"
+              appendTo="body"
+              *ngIf="filter.isDate"
+            ></p-calendar>
+            <p-autoComplete
+              [id]="filter.key"
+              [formControlName]="filter.key"
+              [field]="filter.field"
+              [placeholder]="filter.placeholder"
+              [suggestions]="filteredClientes"
+              (completeMethod)="filter.search($event)"
+              [pKeyFilter]="filter.pKeyFilter ?? alpha_space"
+              (onSelect)="filter.onSelect($event)"
+              *ngIf="filter.isAutocomplete"
+            ></p-autoComplete>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-card>
+
+<p-table
+  [value]="productos"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [columns]="cols"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">{{ col.header }}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        <ng-container *ngIf="col.field != 'src'">{{
+          product[col.field]
+        }}</ng-container>
+        <div class="mb-1" *ngIf="col.field == 'src'">
+          <img [src]="product.src" [alt]="product.name" width="50" class="shadow-4" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <tr>
+      <td colspan="5" class="text-right">Total</td>
+      <td>{{ totalPrecioNeto | currency : "USD" }}</td>
+      <td>{{ totalIva | currency : "USD" }}</td>
+      <td>{{ total | currency : "USD" }}</td>
+    </tr>
+  </ng-template>
+</p-table>

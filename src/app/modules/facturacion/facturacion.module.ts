@@ -13,12 +13,14 @@ import { OrdenCompraComponent } from './pages/orden-compra/orden-compra.componen
 // Components
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
+import { ProductsSellingComponent } from './components/products-selling/products-selling.component';
 
 @NgModule({
   declarations: [
     OrdenCompraComponent,
     ProductComponent,
     ProductsComponent,
+    ProductsSellingComponent,
   ],
   imports: [
     CommonModule,
