@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,14 @@ export class LoginComponent {
 
   message: string = '';
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private loginService: LoginService
+  ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
 
@@ -24,23 +29,39 @@ export class LoginComponent {
   onSubmit() {
     this.message = '';
 
-    if (!this.loginForm.valid) {
-      const username = this.loginForm.get('username')?.errors;
-      const password = this.loginForm.get('password')?.errors;
+    if (!this.continue()) return;
+    // * Lógica de login
+    this.loginService.login(this.loginForm.value).subscribe({
+      next: (res: any) => {
+        if (!res.error) {
+          this.loginService.User.emit(res.datos);
+          this.router.navigateByUrl(`/sistema`);
+        }
+      },
+      error: (error?: any) => {},
+      complete: () => {
+        this.loginForm.reset();
+      },
+    });
+  }
 
-      this.message =
-        username?.['required'] || password?.['required']
-          ? 'Por favor, llene todos los campos'
-          : password?.['minlength']
-          ? 'La contraseña debe tener al menos 8 caracteres'
-          : '';
+  onBlur($event?: any) {
+    this.continue();
+  }
 
-      return;
-    }
+  continue() {
+    if (this.loginForm.valid) return true;
 
-    console.log(this.loginForm.value);
-    // TODO: Implementar lógica de login
-    this.router.navigateByUrl(`sistema/`);
-    this.loginForm.reset();
+    const username = this.loginForm.get('username')?.errors;
+    const password = this.loginForm.get('password')?.errors;
+
+    this.message =
+      username?.['required'] || password?.['required']
+        ? 'Por favor, llene todos los campos'
+        : password?.['minlength']
+        ? 'La contraseña debe tener al menos 5 caracteres'
+        : '';
+
+    return false;
   }
 }

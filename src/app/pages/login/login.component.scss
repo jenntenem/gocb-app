@@ -28,3 +28,17 @@
     width: 100%;
   }
 }
+
+.custom-inputgroup {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-inputgroup .p-inputgroup-addon {
+  flex: 0 0 auto; /* Prevent the addon from growing */
+}
+
+.custom-inputgroup .p-password {
+  flex: 1 1 auto; /* Allow the password input to grow and fill the available space */
+}

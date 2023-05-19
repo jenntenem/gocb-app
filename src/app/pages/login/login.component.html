@@ -2,7 +2,10 @@
   <div class="login-box">
     <h2>Login</h2>
     <form [formGroup]="loginForm" class="flex flex-column gap-2">
-      <div class="form-field">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-user"></i>
+        </span>
         <input
           id="username"
           pInputText
@@ -12,15 +15,22 @@
           [maxlength]="15"
         />
       </div>
-      <div class="form-field">
+      <div class="custom-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-lock"></i>
+        </span>
         <p-password
           placeholder="Password"
           formControlName="password"
           styleClass="w-100"
-          [minlength]="8"
+          [minlength]="5"
           [maxLength]="15"
+          [feedback]="false"
+          (onBlur)="onBlur($event)"
+          class="w-full"
         ></p-password>
       </div>
+
       <span class="p-error" *ngIf="true">
         {{ message }}
       </span>
