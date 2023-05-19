@@ -11,19 +11,14 @@ export class InicioComponent implements OnInit {
   items: MenuItem[] = [];
   username: string = '';
 
-  constructor(
-    private loginService: LoginService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.loginService.User.subscribe((res: any) => {
-      this.username = res.user;
-      this.cdr.detectChanges();
-    });
-    this.loginService.menu.subscribe((res: any) => {
-      this.items = res;
-    });
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const menu = JSON.parse(localStorage.getItem('menu') || '{}');
+
+    this.username = user.user;
+    this.items = menu;
 
     /* ! Ejemplo de menu
      this.items = [

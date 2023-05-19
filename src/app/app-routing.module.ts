@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { AuthGuard } from './guards/auth.guard';
 // Components
 import { LoginComponent } from './pages/login/login.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: 'sistema',
     component: InicioComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'mantenimiento',
@@ -21,7 +22,7 @@ const routes: Routes = [
       }
     ],
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

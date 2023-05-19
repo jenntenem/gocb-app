@@ -33,8 +33,10 @@ export class LoginComponent {
     // * Lógica de login
     this.loginService.login(this.loginForm.value).subscribe({
       next: (res: any) => {
-        if (!res.error) {
-          this.loginService.User.emit(res.datos);
+        if (!res.error && res.datos && Object.keys(res.datos).length > 0) {
+          localStorage.setItem('user', JSON.stringify(res.datos));
+          localStorage.setItem('isLogging', 'true');
+
           this.getRol(res.datos.id_rol);
           this.router.navigateByUrl(`/sistema`);
         }
@@ -70,7 +72,7 @@ export class LoginComponent {
     this.loginService.getRol(id_rol).subscribe({
       next: (res: any) => {
         if (!res.error) {
-          this.loginService.menu.emit(res.datos.menu);
+          localStorage.setItem('menu', JSON.stringify(res.datos.menu));
         }
       },
       error: (error?: any) => {},

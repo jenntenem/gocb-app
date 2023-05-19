@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { EventEmitter } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 export interface Response {
   codigo?: number | string;
@@ -16,8 +17,6 @@ export interface Response {
 export class LoginService {
   URL_API = 'http://localhost:8000/api';
   service = 'users';
-  User: EventEmitter<any> = new EventEmitter();
-  menu: EventEmitter<any[]> = new EventEmitter();
 
   constructor(private httpClient: HttpClient) {}
 
