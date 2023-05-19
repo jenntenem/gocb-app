@@ -1,18 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LoginService } from '../login/login.service';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss']
+  styleUrls: ['./inicio.component.scss'],
 })
 export class InicioComponent implements OnInit {
   sidebarVisible: boolean = true;
   items: MenuItem[] = [];
+  username: string = '';
 
-  constructor(private loginService: LoginService) {}
+  constructor(
+    private loginService: LoginService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
+    this.loginService.User.subscribe((res: any) => {
+      this.username = res.user;
+      this.cdr.detectChanges();
+    });
     this.loginService.menu.subscribe((res: any) => {
       this.items = res;
     });
