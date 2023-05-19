@@ -66,7 +66,17 @@ export class ProductsComponent implements OnInit {
   addToDetail(event: any) {
     if (event.isSelected) {
       // Agregar producto a la lista de seleccionados
-      this.selectedProducts.push(event.product);
+      const product = { ...event.product };
+      if (event.cantidad === 1) {
+        product.cantidad_consumir = event.cantidad;
+        this.selectedProducts.push(product);
+      } else {
+        this.selectedProducts.forEach((p) => {
+          if (p.id === product.id) {
+            p.cantidad_consumir = event.cantidad;
+          }
+        });
+      }
     } else {
       // Remover producto de la lista de seleccionados
       const index = this.selectedProducts.findIndex(

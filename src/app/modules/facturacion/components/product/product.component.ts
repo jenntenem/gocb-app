@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit {
   }
 
   onAdd() {
-    this.cantidad++;
+    this.cantidadProducto(1);
   }
 
   cantidadProducto(status: number) {
@@ -37,6 +37,7 @@ export class ProductComponent implements OnInit {
 
     this.addToDetail.emit({
       product: this.product,
+      cantidad: this.cantidad,
       isSelected: this.cantidad > 0,
     });
   }

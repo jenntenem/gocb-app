@@ -19,7 +19,9 @@
         pTooltip="Agregar"
         tooltipPosition="bottom"
         (onClick)="onAdd()"
-        [disabled]="product.estado_registro === false"
+        [disabled]="
+          product.estado_registro === false || product.estado === 'OUTOFSTOCK'
+        "
         *ngIf="cantidad === 0"
       ></p-button>
       <ng-container *ngIf="cantidad != 0">
@@ -39,8 +41,19 @@
           styleClass="p-button-success p-button-rounded"
           icon="pi pi-plus"
           (onClick)="cantidadProducto(1)"
+          [disabled]="product.cantidad - cantidad === 0"
         ></p-button>
       </ng-container>
     </div>
+    <p
+      class="p-error"
+      *ngIf="
+        product.cantidad - cantidad === 0 &&
+        product.estado != 'INACTIVO' &&
+        product.estado != 'OUTOFSTOCK'
+      "
+    >
+      Ya no hay cantidad productos seleccionados
+    </p>
   </div>
 </div>
