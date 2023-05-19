@@ -35,6 +35,7 @@ export class LoginComponent {
       next: (res: any) => {
         if (!res.error) {
           this.loginService.User.emit(res.datos);
+          this.getRol(res.datos.id_rol);
           this.router.navigateByUrl(`/sistema`);
         }
       },
@@ -63,5 +64,17 @@ export class LoginComponent {
         : '';
 
     return false;
+  }
+
+  getRol(id_rol: string) {
+    this.loginService.getRol(id_rol).subscribe({
+      next: (res: any) => {
+        if (!res.error) {
+          this.loginService.menu.emit(res.datos.menu);
+        }
+      },
+      error: (error?: any) => {},
+      complete: () => {},
+    });
   }
 }

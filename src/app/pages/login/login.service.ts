@@ -17,11 +17,17 @@ export class LoginService {
   URL_API = 'http://localhost:8000/api';
   service = 'users';
   User: EventEmitter<any> = new EventEmitter();
+  menu: EventEmitter<any[]> = new EventEmitter();
 
   constructor(private httpClient: HttpClient) {}
 
   login(data: any): Observable<Response> {
     const endPoint = `${this.URL_API}/${this.service}/login`;
     return this.httpClient.post(endPoint, data);
+  }
+
+  getRol(id_rol: string): Observable<Response> {
+    const endPoint = `${this.URL_API}/rols/${id_rol}`;
+    return this.httpClient.get(endPoint);
   }
 }
