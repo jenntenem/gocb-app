@@ -44,6 +44,7 @@ export class LoginComponent {
       error: (error?: any) => {},
       complete: () => {
         this.loginForm.reset();
+        window.location.reload();
       },
     });
   }
