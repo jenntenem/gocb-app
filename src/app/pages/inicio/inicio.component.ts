@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LoginService } from '../login/login.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -11,7 +12,7 @@ export class InicioComponent implements OnInit {
   items: MenuItem[] = [];
   username: string = '';
 
-  constructor() {}
+  constructor(private router: Router,) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -81,5 +82,12 @@ export class InicioComponent implements OnInit {
 
   toggleSidebar() {
     this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('isLogging');
+    localStorage.removeItem('menu');
+    this.router.navigateByUrl('/login');
   }
 }

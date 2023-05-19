@@ -6,7 +6,12 @@
   <div class="content">
     <section class="header-fixed">
       <!-- Contenido del encabezado fijo -->
-      <p> {{ username }} </p>
+      <div class="user-container">
+        <span class="username">Usuario: {{ username }}</span>
+        <button class="logout-button" (click)="logout()">
+          <i class="pi pi-sign-out"></i>
+        </button>
+      </div>
     </section>
     <section class="main-content">
       <!-- Contenido principal de la sección de contenido -->

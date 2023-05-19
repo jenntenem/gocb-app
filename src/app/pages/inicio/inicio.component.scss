@@ -21,6 +21,34 @@
       z-index: 999;
       text-align: end;
       padding: 0 15px;
+
+      .user-container {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 10px;
+      }
+
+      .username {
+        font-weight: bold;
+      }
+
+      .logout-button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .logout-button i {
+        font-size: 20px;
+        color: #888;
+      }
+
+      .logout-button i:hover {
+        color: #ff5252;
+      }
+
     }
 
     .main-content {
