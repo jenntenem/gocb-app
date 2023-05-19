@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Factura, Cliente } from '../../models/factura.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MantenimientoService } from '../../../mantenimiento/mantenimiento.service';
 @Component({
   selector: 'app-orden-compra',
   templateUrl: './orden-compra.component.html',
@@ -15,10 +16,13 @@ export class OrdenCompraComponent implements OnInit {
   // Defauklt Values
   alpha_space = /[a-z\s]/i;
   date?: Date = new Date();
-  clientes$?: Cliente[] = [];
-  filteredClientes?: Cliente[] = [];
+  clientes$: Cliente[] = [];
+  filteredClientes: Cliente[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private mantenimientoService: MantenimientoService
+  ) {
     this.myForm = this.formBuilder.group({
       numero: ['', [Validators.required]],
       establecimiento: ['', [Validators.required]],
@@ -37,6 +41,24 @@ export class OrdenCompraComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getClients();
+  }
+
+  async getClients() {
+    await this.mantenimientoService.getClients().subscribe(
+      (res) => {
+        this.clientes$ = res.datos;
+        this.filteredClientes = res.datos;
+      },
+      (err) => {},
+      () => {
+        this.getListFilterData();
+      }
+    );
+  }
+
+  getListFilterData() {
+    console.log('second');
     this.listFilterData = [
       {
         label: 'Factura Nro.',
@@ -84,7 +106,8 @@ export class OrdenCompraComponent implements OnInit {
         selectBlur: true,
         onBlur: (event?: any) => this.validatorIdentificacion(),
         search: (event?: any) => this.searchCliente(event, 'identificacion'),
-        onSelect: (event?: any) => this.searchCliente(event, 'identificacion'),
+        onSelect: (event?: any) => this.selectedCliente(event),
+        suggestions: this.filteredClientes,
         isAutocomplete: true,
       },
       {
@@ -93,10 +116,9 @@ export class OrdenCompraComponent implements OnInit {
         field: 'nombre',
         placeholder: 'Nombres y Apellidos',
         maxlength: 50,
-        suggestions: this.filteredClientes,
         isAutocomplete: true,
         search: (event?: any) => this.searchCliente(event, 'nombre'),
-        onSelect: (event?: any) => this.searchCliente(event, 'nombre'),
+        onSelect: (event?: any) => this.selectedCliente(event),
       },
     ];
   }
@@ -116,7 +138,8 @@ export class OrdenCompraComponent implements OnInit {
   }
 
   selectedCliente(event: any) {
-    const cliente = event.value as Cliente;
+    const cliente = event as Cliente;
+
     this.myForm.get('identificacion')?.setValue(cliente);
     this.myForm.get('cliente')?.setValue(cliente);
   }

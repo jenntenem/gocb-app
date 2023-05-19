@@ -23,4 +23,9 @@ export class MantenimientoService {
     const endPoint = `${this.URL_API}/${this.serviceProducts}/`;
     return this.httpClient.get(endPoint);
   }
+
+  getClients(): Observable<Response> {
+    const endPoint = `${this.URL_API}/${this.serviceClients}/`;
+    return this.httpClient.get(endPoint);
+  }
 }

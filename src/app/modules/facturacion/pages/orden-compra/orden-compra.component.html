@@ -47,7 +47,7 @@
               [formControlName]="filter.key"
               [field]="filter.field"
               [placeholder]="filter.placeholder"
-              [suggestions]="filter.suggestions"
+              [suggestions]="filteredClientes"
               (completeMethod)="filter.search($event)"
               [pKeyFilter]="filter.pKeyFilter ?? alpha_space"
               (onSelect)="filter.onSelect($event)"

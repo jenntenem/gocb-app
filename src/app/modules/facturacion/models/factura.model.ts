@@ -8,14 +8,13 @@ export interface Factura {
 }
 
 export interface Cliente {
-  id: number;
+  _id?: string;
   identificacion: string;
   nombre: string;
-  email: string;
+  correo: string;
   telefono: string;
   direccion: string;
   estado_registro: boolean;
-  estado: string;
 }
 /*
 { "Factura": {
