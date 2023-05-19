@@ -1,13 +1,13 @@
 <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
   <div class="mb-3">
-    <img [src]="product.image" [alt]="product.name" class="w-6 shadow-2" />
+    <img [src]="product.src" [alt]="product.name" class="w-4 shadow-2" />
   </div>
   <div>
-    <h4 class="mb-1">{{ product.name }}</h4>
-    <h6 class="mt-0 mb-3">{{ "$" + product.price }}</h6>
+    <h4 class="mb-1">{{ product.nombre }}</h4>
+    <h6 class="mt-0 mb-3">{{ "$" + product.precio }}</h6>
     <p-tag
-      [value]="product.inventoryStatus"
-      [severity]="getSeverity(product.inventoryStatus)"
+      [value]="product.estado"
+      [severity]="getSeverity(product.estado)"
     ></p-tag>
     <div
       class="car-buttons mt-5 flex align-items-center justify-content-center"
@@ -19,6 +19,7 @@
         pTooltip="Agregar"
         tooltipPosition="bottom"
         (onClick)="onAdd()"
+        [disabled]="product.estado_registro === false"
         *ngIf="cantidad === 0"
       ></p-button>
       <ng-container *ngIf="cantidad != 0">

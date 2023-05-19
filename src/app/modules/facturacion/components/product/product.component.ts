@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
 })
 export class ProductComponent implements OnInit {
-  product: any = {};
+  @Input() product: any = {};
+  @Output() addToDetail = new EventEmitter<any>();
+
   cantidad: number = 0;
   constructor() {}
 
@@ -19,6 +21,8 @@ export class ProductComponent implements OnInit {
         return 'warning';
       case 'OUTOFSTOCK':
         return 'danger';
+      case 'INACTIVO':
+        return 'danger';
       default:
         return 'primary';
     }
@@ -30,5 +34,10 @@ export class ProductComponent implements OnInit {
 
   cantidadProducto(status: number) {
     status === 1 ? this.cantidad++ : this.cantidad--;
+
+    this.addToDetail.emit({
+      product: this.product,
+      isSelected: this.cantidad > 0,
+    });
   }
 }

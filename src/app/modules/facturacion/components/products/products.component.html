@@ -1,0 +1,44 @@
+<div class="filters" *ngIf="false">
+  <label for="categoryFilter">Categoría:</label>
+  <input
+    type="text"
+    id="categoryFilter"
+    [(ngModel)]="categoryFilter"
+    (input)="filterProducts()"
+  />
+
+  <label for="nameFilter">Nombre:</label>
+  <input
+    type="text"
+    id="nameFilter"
+    [(ngModel)]="nameFilter"
+    (input)="filterProducts()"
+  />
+
+  <label for="minPriceFilter">Precio Mínimo:</label>
+  <input
+    type="number"
+    id="minPriceFilter"
+    [(ngModel)]="minPriceFilter"
+    (input)="filterProducts()"
+  />
+
+  <label for="maxPriceFilter">Precio Máximo:</label>
+  <input
+    type="number"
+    id="maxPriceFilter"
+    [(ngModel)]="maxPriceFilter"
+    (input)="filterProducts()"
+  />
+</div>
+<div class="grid formgrid p-fluid">
+  <div
+    class="col-12 md:col-4 lg:col-3 my-2"
+    *ngFor="let product of filteredProducts"
+  >
+    <app-product
+      [product]="product"
+      (addToDetail)="addToDetail($event)"
+    ></app-product>
+  </div>
+</div>

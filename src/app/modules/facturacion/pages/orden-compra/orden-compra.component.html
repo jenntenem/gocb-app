@@ -59,3 +59,20 @@
     </div>
   </form>
 </p-card>
+
+<p-tabView styleClass="tabview-custom" class="m-2">
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <i class="pi pi-calendar" ngClass="mx-2"></i>
+      <span>Añadir Productos</span>
+    </ng-template>
+    <app-products></app-products>
+  </p-tabPanel>
+  <p-tabPanel header="Header II">
+    <ng-template pTemplate="header">
+      <i class="pi pi-user" ngClass="mx-2"></i>
+      <span>Detalle de la compra</span>
+    </ng-template>
+    <app-products></app-products>
+  </p-tabPanel>
+</p-tabView>

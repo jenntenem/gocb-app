@@ -12,11 +12,13 @@ import { OrdenCompraComponent } from './pages/orden-compra/orden-compra.componen
 
 // Components
 import { ProductComponent } from './components/product/product.component';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
     OrdenCompraComponent,
     ProductComponent,
+    ProductsComponent,
   ],
   imports: [
     CommonModule,
